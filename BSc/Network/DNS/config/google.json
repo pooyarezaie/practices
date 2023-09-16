@@ -1,0 +1,8 @@
+{
+  "host": "0.0.0.0",
+  "port": 12345,
+  "data_file_path": "data/google.json",
+  "validity": 30,
+  "name": ".google.com",
+  "load_balance": false
+}
