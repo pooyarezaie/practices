@@ -14,17 +14,17 @@ int main() {
 
   find_primes();
 
-  std::vector<std::pair<int, int>> pairs;
+  std::vector<int> answer;
 
   for (int i = 2; i < (n - 1); ++i) {
     if (is_prime[i] && is_prime[2 + i]) {
-      pairs.push_back(std::make_pair(2, i));
+      answer.push_back(i);
     }
   }
 
-  std::cout << pairs.size() << std::endl;
-  for (auto i : pairs) {
-    std::cout << i.first << " " << i.second << std::endl;
+  std::cout << answer.size() << std::endl;
+  for (auto i : answer) {
+    std::cout << 2 << " " << i << std::endl;
   }
 
   return 0;
