@@ -22,9 +22,8 @@ int main() {
 
   find_shortest_path(0);
 
-  int min_distance = std::min(distance[0][n - 1], distance[1][n - 1]);
-  min_distance = std::min(min_distance, distance[2][n - 1]);
-
+  int min_distance = std::min(std::min(distance[0][n - 1], distance[1][n - 1]),
+                              distance[2][n - 1]);
   if (min_distance < INF) {
     std::cout << min_distance << std::endl;
   } else {
@@ -36,11 +35,11 @@ int main() {
 void find_shortest_path(int v) {
   for (int i = 0; i < 3; ++i) {
     std::fill(distance[i], distance[i] + MAX_N, INF);
+    distance[i][v] = 0;
   }
 
   std::queue<int> q;
   q.push(v);
-  distance[0][v] = distance[1][v] = distance[2][v] = 0;
 
   while (!q.empty()) {
     int u = q.front();
@@ -48,7 +47,7 @@ void find_shortest_path(int v) {
 
     for (int i = 0; i < adj[u].size(); ++i) {
       int w = adj[u][i], c1 = color[u][i];
-      if (distance[c1][w] >= INF) {
+      if (distance[c1][w] == INF) {
         int c2 = (c1 + 1) % 3, c3 = (c1 + 2) % 3;
         int d = std::min(distance[c2][u], distance[c3][u]) + 1;
         if (d < INF) {
