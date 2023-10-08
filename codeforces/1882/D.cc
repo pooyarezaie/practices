@@ -34,9 +34,6 @@ int main() {
     dfs(0, tree);
 
     for (int i = 0; i < tree.order; ++i) {
-      if (parent[i] == -1) {
-        continue;
-      }
       m[0] += subtree_size[i] * (tree.a[parent[i]] ^ tree.a[i]);
     }
     mark.clear();
