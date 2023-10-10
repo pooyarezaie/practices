@@ -1,7 +1,5 @@
-#include <algorithm>
 #include <iostream>
 #include <map>
-#include <ostream>
 #include <vector>
 
 typedef std::map<int, int> Factorization;
