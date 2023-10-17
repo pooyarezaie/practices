@@ -11,7 +11,7 @@ int answer[MAX_N];
 std::vector<int> adj[MAX_N];
 std::set<int> leaves[MAX_N];
 
-void dfs(int v, int par);
+void dfs(int v, int parent);
 int merge(std::set<int> &s1, std::set<int> &s2);
 
 int main() {
@@ -41,10 +41,9 @@ int main() {
   return 0;
 }
 
-void dfs(int v, int par) {
-  for (int i = 0; i < adj[v].size(); ++i) {
-    int u = adj[v][i];
-    if (u == par) {
+void dfs(int v, int parent) {
+  for (auto u : adj[v]) {
+    if (u == parent) {
       continue;
     }
     dfs(u, v);
@@ -58,19 +57,19 @@ int merge(std::set<int> &s1, std::set<int> &s2) {
     std::swap(s1, s2);
   }
   int min_diff = INF;
-  for (auto e : s2) {
+  for (auto element : s2) {
     std::set<int>::iterator pre, suc;
-    pre = suc = s1.lower_bound(e);
+    pre = suc = s1.lower_bound(element);
     if (pre != s1.begin()) {
       pre--;
     }
     if (pre != s1.end()) {
-      min_diff = std::min(min_diff, std::abs(*pre - e));
+      min_diff = std::min(min_diff, std::abs(*pre - element));
     }
     if (suc != s1.end()) {
-      min_diff = std::min(min_diff, std::abs(*suc - e));
+      min_diff = std::min(min_diff, std::abs(*suc - element));
     }
-    s1.insert(e);
+    s1.insert(element);
   }
   return min_diff;
 }
