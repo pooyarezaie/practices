@@ -1,8 +1,6 @@
 #include <cstdio>
 
-#include <iostream>
 #include <map>
-#include <set>
 #include <vector>
 
 const int MAX_N = 500 * 1000 + 10;
@@ -23,11 +21,11 @@ void merge(int v, int u);
 
 int main() {
   int n, m;
-  scanf("%d %d", &n, &m);
+  scanf("%d%d", &n, &m);
 
   for (int i = 1; i < n; ++i) {
     int parent;
-    scanf("%d ", &parent);
+    scanf("%d", &parent);
     parent--;
     adj[i].push_back(parent);
     adj[parent].push_back(i);
