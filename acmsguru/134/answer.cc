@@ -40,19 +40,15 @@ int main() {
 
 void dfs(int v, int parent) {
   subtree_size[v] += 1;
+  int av = -1;
   for (auto u : adj[v]) {
     if (u == parent) {
       continue;
     }
     dfs(u, v);
     subtree_size[v] += subtree_size[u];
-  }
-  int av = n - subtree_size[v];
-  for (auto u : adj[v]) {
-    if (u == parent) {
-      continue;
-    }
     av = std::max(av, subtree_size[u]);
   }
+  av = std::max(av, n - subtree_size[v]);
   associated_value[v] = av;
 }
